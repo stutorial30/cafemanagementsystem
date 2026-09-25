@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧾Cafe  Shop - User Order Page</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    background-image: url('https://blog.photoadking.com/wp-content/uploads/2023/01/d79363ce-14e4-418b-9416-19b2ee3332ed-png-1920%C3%971080-1-1024x478.png');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background: rgba(185, 153, 153, 0.8); 
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    background-color: #fff;
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #4e342e;
+    margin-bottom: 20px;
+}
+
+.form input, .form button {
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form input {
+    width: 200px;
+    border: 1px solid #ddd;
+}
+
+.form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #d2691e;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+#total {
+    font-size: 18px;
+    margin-top: 15px;
+    color: #388e3c;
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="homee.html">Home</a> |
+    <a href="aboutus.html">About Us</a> |
+    <a href="m.html">Menu</a> |
+    <a href="order.html">Order list</a> |
+    <a href="contact.html">Contact Us</a> |
+    <a href="payment.html">Payment</a> |
+    <a href="bill.html">Bill</a>
+</nav>
+
+<div class="container">
+    <h1>🧾 cafe Shop - User Order Page</h1>
+
+    <div class="form" action="/order" method="post">
+        <input type="text" id="customer" placeholder="Customer Name">
+        <input type="text" id="item" placeholder="Item Name">
+        <input type="number" id="amount" placeholder="Amount (₹)">
+        <button onclick="addOrder()">Add to Order</button>
+    </div>
+
+    <table id="orderTable">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Item</th>
+                <th>Amount (₹)</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div id="total">Total: ₹0</div>
+</div>
+
+<script>
+let orders = [];
+let orderId = 1;
+let total = 0;
+
+// Load items from Menu Page
+let menuOrders = JSON.parse(localStorage.getItem("menuOrders")) || [];
+menuOrders.forEach(item => {
+    const order = { id: orderId++, customer: "Guest", item: item.name, amount: item.price };
+    orders.push(order);
+});
+
+// Populate table
+const tbody = document.querySelector("#orderTable tbody");
+orders.forEach(order => {
+    const row = document.createElement("tr");
+    row.innerHTML = `<td>${order.id}</td><td>${order.customer}</td><td>${order.item}</td><td>₹${order.amount.toFixed(2)}</td>`;
+    tbody.appendChild(row);
+    total += order.amount;
+});
+document.getElementById("total").innerText = `Total: ₹${total.toFixed(2)}`;
+
+// Optional: Add manual orders via form
+function addOrder() {
+    const customer = document.getElementById("customer").value.trim();
+    const item = document.getElementById("item").value.trim();
+    const amount = parseFloat(document.getElementById("amount").value);
+
+    if (!customer || !item || isNaN(amount)) {
+        alert("Please fill all fields with valid values!");
+        return;
+    }
+
+    const order = { id: orderId++, customer, item, amount };
+    orders.push(order);
+
+    const row = document.createElement("tr");
+    row.innerHTML = `<td>${order.id}</td><td>${order.customer}</td><td>${order.item}</td><td>₹${order.amount.toFixed(2)}</td>`;
+    tbody.appendChild(row);
+
+    total += amount;
+    document.getElementById("total").innerText = `Total: ₹${total.toFixed(2)}`;
+
+    // Clear input fields
+    document.getElementById("customer").value = "";
+    document.getElementById("item").value = "";
+    document.getElementById("amount").value = "";
+}
+
+// Clear menu orders from localStorage once loaded
+localStorage.removeItem("menuOrders");
+</script>
+</body>
+</html>
+

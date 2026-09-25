@@ -1,0 +1,181 @@
+<html>
+<head>
+    <title>Bill</title>
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://cdna.artstation.com/p/assets/images/images/053/320/576/large/dmitry-15.jpg?1661940564');
+    background-size: cover; 
+    background-position: center; 
+    color: #712e2e;
+}
+.invoice-container {
+    width: 65%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95); 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    color: #333;
+}
+ button {
+    background-color: #5c3131;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+ button:hover {
+    background-color: #4a2424;
+}
+header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.cafe-logo img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+footer {
+    text-align: center;
+    border-top: 2px solid #333;
+    padding-top: 10px;
+    color: #555;
+}
+footer button {
+    background-color: #5c3131;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+footer button:hover {
+    background-color: #4a2424;
+}
+nav {
+    background: rgba(185, 153, 153, 0.8);
+    padding: 10px; 
+    text-align: center;
+}
+nav a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    margin:0 15px;
+    font-size: 18px;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="homee.html">Home</a> |
+    <a href="aboutus.html">About Us</a> |
+    <a href="m.html">Menu</a> 
+    <a href="order.html">Order list</a>
+    <a href="contact.html">Contact Us</a> |
+    <a href="payment.html">Payment</a> |
+    <a href="bill.html">Bill</a>
+</nav>
+
+<center>
+<h1>Bill Page</h1>
+<p>Check your bill details.</p>
+</center>
+
+<div class="invoice-container">
+    <header>
+        <div class="cafe-logo">
+            <img src="https://www.chefdelightcafe.co.uk/client/che002/logo.png" alt="Cafe Logo">
+        </div>
+        <div class="cafe-details">
+            <h2>Generate Bill</h2>
+        </div>
+    </header>
+
+    <form id="billForm">
+        <label>Customer Name:</label><br>
+        <input type="text" id="customerName" placeholder="Customer Name" required><br><br>
+
+        <label>Date:</label><br>
+        <input type="date" id="billDateInput" required><br><br>
+
+        <label>Item Name:</label><br>
+        <input type="text" id="itemName" placeholder="Item Name" required><br><br>
+
+        <label>Quantity:</label><br>
+        <input type="number" id="itemQty" placeholder="Quantity" min="1" required><br><br>
+
+        <label>Price:</label><br>
+        <input type="number" id="itemPrice" placeholder="Price" min="0" required><br><br>
+
+        <label>Payment Method:</label><br>
+        <select id="paymentMethod" required>
+            <option>Cash</option>
+            <option>UPI</option>
+            <option>Card</option>
+        </select><br><br>
+
+        <button type="submit">Generate Bill</button>
+    </form>
+
+    <div id="billDisplay" style="display:none; margin-top:20px;">
+        <h3>Bill Details</h3>
+        <p><strong>Date:</strong> <span id="displayDate"></span></p>
+        <p><strong>Customer Name:</strong> <span id="displayName"></span></p>
+        <p><strong>Item Name:</strong> <span id="displayItem"></span></p>
+        <p><strong>Quantity:</strong> <span id="displayQty"></span></p>
+        <p><strong>Price:</strong> Rs<span id="displayPrice"></span></p>
+        <p><strong>Total Amount:</strong> Rs<span id="totalAmountDisplay"></span></p>
+        <p><strong>Payment Method:</strong> <span id="displayPayment"></span></p>
+    </div>
+
+    <footer>
+        <p>Thank you for dining with us!</p>
+        <p>Visit again!</p>
+        <button onclick="goToPayment()">Process Completed</button>
+    </footer>
+</div>
+
+<script>
+document.getElementById('billForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const name = document.getElementById('customerName').value;
+    const date = document.getElementById('billDateInput').value;
+    const item = document.getElementById('itemName').value;
+    const qty = parseInt(document.getElementById('itemQty').value);
+    const price = parseFloat(document.getElementById('itemPrice').value);
+    const totalAmount = qty * price;
+    const payment = document.getElementById('paymentMethod').value;
+
+    document.getElementById('displayName').textContent = name;
+    document.getElementById('displayDate').textContent = date;
+    document.getElementById('displayItem').textContent = item;
+    document.getElementById('displayQty').textContent = qty;
+    document.getElementById('displayPrice').textContent = price.toFixed(2);
+    document.getElementById('totalAmountDisplay').textContent = totalAmount.toFixed(2);
+    document.getElementById('displayPayment').textContent = payment;
+
+    document.getElementById('billDisplay').style.display = 'block';
+});
+
+function goToPayment() {
+    window.location.href = "cafepro.html";
+}
+</script>
+
+</body>
+</html>

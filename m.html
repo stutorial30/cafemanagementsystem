@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f1e5;
+            text-align: center;
+            background-image: url('https://menuexplorer.co.uk/wp-content/uploads/2024/10/caffe-nero-seasonal.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        nav {
+            background: rgba(185, 153, 153, 0.8);
+            padding: 15px;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .menu-container {
+            width: 50%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        .menu-category {
+            margin-bottom: 40px;
+        }
+
+        .menu-category h2 {
+            color: #d2691e;
+            border-bottom: 2px solid #d2691e;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .menu-items {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 10px;
+        }
+
+        .menu-card {
+            min-width: 160px;
+            flex-shrink: 0;
+            margin-bottom: 0;
+        }
+
+        .menu-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .rating {
+            color: #ffa500;
+            margin-top: 3px;
+        }
+
+        .price {
+            margin-top: 5px;
+            font-weight: bold;
+            color: #2e2e2e;
+        }
+
+        .btn {
+            background-color: #8b4513;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #5a3e36;
+            transform: scale(1.05);
+        }
+
+        #cart {
+            margin-top: 20px;
+            text-align: left;
+            border-top: 2px solid #d2691e;
+            padding-top: 10px;
+        }
+
+        #cart h3 {
+            color: #8b4513;
+        }
+
+        #cart ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="homee.html">Home</a> |
+    <a href="aboutus.html">About Us</a> |
+    <a href="menu.html">Menu</a> |
+    <a href="order.html">Order list</a> |
+    <a href="contact.html">Contact Us</a> |
+    <a href="payment.html">Payment</a> |
+    <a href="bill.html">Bill</a>
+</nav>
+<div id="welcomeUser" style="color:white; margin-top:10px; font-size:18px;"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const username = localStorage.getItem("username");
+    if(username){
+        document.getElementById("welcomeUser").innerText = `Welcome, ${username}!`;
+    } else {
+        document.getElementById("welcomeUser").innerText = `Welcome, Guest!`;
+    }
+});
+</script>
+<h1>Menu Card</h1>
+
+<div class="menu-container">
+
+    <!-- Coffee -->
+    <div class="menu-category">
+        <h2>Coffee</h2>
+        <div class="menu-items">
+            <div class="menu-card">
+                <img src="https://coffeelovers101.com/wp-content/uploads/2024/05/reflecting_on_espresso_flavors.jpg" alt="Espresso">
+                <div class="item-name">Espresso</div>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <div class="price">Rs250</div>
+                <button class="btn" onclick="addToCart('Espresso', 250)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://www.acouplecooks.com/wp-content/uploads/2020/10/How-to-make-a-latte-007.jpg" alt="Latte">
+                <div class="item-name">Latte</div>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <div class="price">Rs350</div>
+                <button class="btn" onclick="addToCart('Latte', 350)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://www.creativefabrica.com/wp-content/uploads/2024/04/03/Coffee-HD-image-Ai-Generated-Graphics-94747003-1.jpg" alt="Cappuccino">
+                <div class="item-name">Cappuccino</div>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <div class="price">Rs375</div>
+                <button class="btn" onclick="addToCart('Cappuccino', 375)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://2.bp.blogspot.com/-I0rdxZj_dwk/UFZQs22fSBI/AAAAAAAAAKw/byN1OWiehWI/s1600/ToffeeMocha.JPG" alt="Mocha">
+                <div class="item-name">Mocha</div>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <div class="price">Rs300</div>
+                <button class="btn" onclick="addToCart('Mocha', 300)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tea -->
+    <div class="menu-category">
+        <h2>Tea</h2>
+        <div class="menu-items">
+            <div class="menu-card">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/037/337/209/small_2x/ai-generated-health-benefits-ofgreen-tea-free-photo.jpg" alt="Green Tea">
+                <div class="item-name">Green Tea</div>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <div class="price">Rs200</div>
+                <button class="btn" onclick="addToCart('Green Tea', 200)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://vaya.in/recipes/wp-content/uploads/2018/02/Black-Tea.jpg" alt="Black Tea">
+                <div class="item-name">Black Tea</div>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <div class="price">Rs225</div>
+                <button class="btn" onclick="addToCart('Black Tea', 225)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://pluspng.com/img-png/tea-png-png-file-name-tea-1800.png" alt="Lemon Tea">
+                <div class="item-name">Lemon Tea</div>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <div class="price">Rs200</div>
+                <button class="btn" onclick="addToCart('Lemon Tea', 200)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://connect.healthkart.com/wp-content/uploads/2023/07/Peppermint-tea_900.jpg" alt="Peppermint Tea">
+                <div class="item-name">Peppermint Tea</div>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <div class="price">Rs225</div>
+                <button class="btn" onclick="addToCart('Peppermint Tea', 225)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Snacks -->
+    <div class="menu-category">
+        <h2>Snacks</h2>
+        <div class="menu-items">
+            <div class="menu-card">
+                <img src="https://tint.creativemarket.com/gcw5d75BZ5JUKdp0F5zWivxgzmnconBjxexeHokwzfs/width:1820/height:1214/gravity:nowe/rt:fill-down/el:1/preset:cm_watermark_retina/czM6Ly9maWxlcy5jcmVhdGl2ZW1hcmtldC5jb20vaW1hZ2VzL3NjcmVlbnNob3RzL3Byb2R1Y3RzLzQ4My80ODM4LzQ4Mzg4MDEvY3lqanpjODF2dHk5NXdtcTU3cWQ1emUxY2xwY3hhZzhqcmowYWt2dmpoZzYzM25zZmx4ZWFzZndsdHRkaTBsai1vLmpwZw" alt="Croissant">
+                <div class="item-name">Croissant</div>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <div class="price">Rs250</div>
+                <button class="btn" onclick="addToCart('Croissant', 250)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://2.bp.blogspot.com/_rn_ZMK9w-rw/TGQ412MUPII/AAAAAAAAAJs/1Ay3JtIHJw8/s1600/muffins+1.jpg" alt="Muffin">
+                <div class="item-name">Muffin</div>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <div class="price">Rs300</div>
+                <button class="btn" onclick="addToCart('Muffin', 300)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://static.vecteezy.com/system/resources/previews/024/715/469/non_2x/stack-of-homemade-pancakes-with-berry-syrup-generated-by-ai-free-photo.jpg" alt="Pancake">
+                <div class="item-name">Pancake</div>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <div class="price">Rs400</div>
+                <button class="btn" onclick="addToCart('Pancake', 400)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://brookrest.com/wp-content/uploads/2020/05/AdobeStock_282247995-scaled.jpeg" alt="Burger">
+                <div class="item-name">Burger</div>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <div class="price">Rs300</div>
+                <button class="btn" onclick="addToCart('Burger', 300)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart -->
+    <div id="cart">
+        <h3>🛒 Your Cart</h3>
+        <ul id="cartList"></ul>
+        <h4 id="total">Total: Rs0</h4>
+        <button class="btn" onclick="placeOrder()">Place Order</button>
+    </div>
+
+</div>
+
+<script>
+let addcart = [];
+
+function addToCart(name, price){
+    cart.push({name, price});
+    updateCart();
+}
+
+function updateCart(){
+    const list = document.getElementById("cartList");
+    list.innerHTML = "";
+    let total = 0;
+    cart.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = `${item.name} - Rs${item.price}`;
+        list.appendChild(li);
+        total += item.price;
+    });
+    document.getElementById("total").innerText = `Total: Rs${total}`;
+}
+
+function placeOrder(){
+    if(cart.length === 0){
+        alert("Cart is empty!");
+        return;
+    }
+    alert("Order placed successfully!");
+    cart = [];
+    updateCart();
+}
+</script>
+<script>
+let cart = [];
+
+function addToCart(name, price){
+    cart.push({name, price});
+    updateCart();
+}
+
+function updateCart(){
+    const list = document.getElementById("cartList");
+    list.innerHTML = "";
+    let total = 0;
+    cart.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = `${item.name} - Rs${item.price}`;
+        list.appendChild(li);
+        total += item.price;
+    });
+    document.getElementById("total").innerText = `Total: Rs${total}`;
+}
+
+function placeOrder(){
+    if(cart.length === 0){
+        alert("Cart is empty!");
+        return;
+    }
+    // Save cart in localStorage
+    localStorage.setItem("menuOrders", JSON.stringify(cart));
+    // Redirect to Order Page
+    window.location.href = "order.html";
+}
+</script>
+</body>
+</html>

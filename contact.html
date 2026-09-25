@@ -1,0 +1,120 @@
+<html>
+<head>
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f8f8;
+            background-image: url('https://thumbs.dreamstime.com/b/people-contacts-web-background-global-technology-connections-bright-140701196.jpg'); /* Example background image */
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+        .cafe-logo img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+      text-align: left;  }
+        nav {
+            background: rgba(185, 153, 153, 0.8); 
+            padding: 15px;
+        }
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .contact-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #5c3131;
+        }
+        label {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            display: block;
+            text-align: left;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+        button {
+            background-color: #5c3131;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4a2424;
+        }
+        .contact-img {
+            width: 80%;
+            max-width: 800px;
+            margin: 30px auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <form action="payment.html" method="POST">
+        <nav>
+            <a href="homee.html">Home</a> |
+            <a href="aboutus.html">About Us</a> |
+            <a href="m.html">Menu</a> |
+            <a href="order.html">Order list</a>|
+            <a href="contact.html">Contact Us</a> |
+            <a href="payment.html">Payment</a> |
+            <a href="bill.html">Bill</a>
+        </nav>
+
+        <div class="contact-container">
+            <div class="cafe-logo">
+                <img src="https://www.chefdelightcafe.co.uk/client/che002/logo.png" alt="Café Logo">
+            </div>
+            <h1>Contact Us</h1>
+            <img class="contact-img" src="https://media.istockphoto.com/id/1372286955/photo/contact-us.jpg?b=1&s=170667a&w=0&k=20&c=f-szSkE-FyP2zI4rkajWw7jCQrU1VUlsa6jDZm5xScQ=" alt="Contact Us">
+
+            <form action="mailto:yourcafe@example.com" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="mobile">Contact:</label>
+                <input type="text" id="mobile" name="mobile" maxlength="10" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Send Message</button>
+                <button type="button" onclick="window.location.href='payment.html';">Proceed to Payment</button>
+            </form>
+        </div>
+    </form>
+</body>
+</html>

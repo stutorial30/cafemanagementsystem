@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            background-image: url('https://img.pikbest.com/wp/202348/credit-card-payment-digitized-3d-render-of-and-contactless-nfc-transaction_9783416.jpg!bw700');
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .payment-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 8px;
+        }
+
+        button {
+            background: #5c3131;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #paymentOptions button {
+            background: #ffcc80;
+            color: black;
+        }
+
+        img {
+            width: 200px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        nav {
+            background: rgba(185, 153, 153, 0.8); 
+            padding: 15px;
+        }
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .cafe-logo img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <form action="bill.html" method="post">
+        <nav>
+            <a href="home.html">Home</a> |
+            <a href="aboutus.html">About Us</a> |
+            <a href="menu.html">Menu</a> |
+            <a href="order.html">Order list</a> |
+            <a href="contact.html">Contact Us</a> |
+            <a href="payment.html">Payment</a> |
+            <a href="bill.html">Bill</a>
+        </nav>
+
+        <div class="container">
+            <div class="cafe-logo">
+                <img src="https://www.chefdelightcafe.co.uk/client/che002/logo.png" alt="Café Logo">
+            </div>
+
+            <h1>Payment Page</h1>
+            <h1>Welcome to Cafe</h1>
+            <p>Secure your payment here.</p>
+
+            <!-- Stripe Button -->
+            <div class="payment-box">
+                <h2>Pay Online</h2>
+                <button type="button" id="payButton">Pay with Stripe</button>
+
+                <!-- Simple Payment Options -->
+                <div id="paymentOptions">
+                    <button type="button" onclick="selectPayment('Credit Card')">💳 Credit Card</button>
+                    <button type="button" onclick="selectPayment('UPI')">📱 UPI</button>
+                </div>
+
+                <p id="selectedPayment"></p>
+            </div>
+
+            <!-- UPI QR -->
+            <div class="payment-box">
+                <h2>Scan to Pay (UPI)</h2>
+                <!-- Replace 'your_upi_id@upi' with your actual UPI ID -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=your_upi_id@upi&pn=Cafe%20Name&am=100" alt="QR Code">
+                <p>UPI ID: <b>your_upi_id@upi</b></p>
+            </div>
+        </div>
+
+        <script>
+            const stripe = Stripe('your_stripe_public_key');
+
+            document.getElementById('payButton').addEventListener('click', async () => {
+                // This part requires backend to work
+                alert("Stripe payment clicked. Backend required to process.");
+            });
+
+            function selectPayment(method) {
+                document.getElementById('selectedPayment').innerText = "Selected Payment Method: " + method;
+            }
+        </script>
+
+        <button type="submit">Payment Successfully</button>
+    </form>
+</body>
+</html>
